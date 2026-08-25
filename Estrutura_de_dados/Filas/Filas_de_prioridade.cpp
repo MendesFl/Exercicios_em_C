@@ -50,8 +50,10 @@ void Enfileirar(Fila *f, char nome[], int idade){
         else{
             No *aux = f->inicio;
 
-            while(aux->proximo != NULL &&
-                  aux->proximo->pessoa.idade >= 60){
+            while(aux->proximo != NULL && aux->proximo->pessoa.idade >= 60){
+            	if(aux->proximo->pessoa.idade < 60){
+            		break; 
+				}
                 aux = aux->proximo;
             }
 
