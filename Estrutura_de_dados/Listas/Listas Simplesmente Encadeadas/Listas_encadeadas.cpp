@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 
 typedef struct no{
 	int valor;
@@ -42,7 +41,7 @@ void InsertMeio(Lista *l, int valor, int ant){
 	novo->valor = valor;
 	
 	if(l->inicio == NULL){
-		InsertInicio(l, valor);
+		l->inicio = novo;
 	}
 	else{
 		No *aux = l->inicio;
@@ -67,9 +66,10 @@ void InsertFim(Lista *l, int valor){
 	}
 	
 	novo->valor = valor;
+	novo->prox = NULL;
 	
 	if(l->inicio == NULL){
-		InsertInicio(l, valor);
+		l->inicio = novo;
 	}
 	else{
 		No *aux = l->inicio;
@@ -81,8 +81,31 @@ void InsertFim(Lista *l, int valor){
 	}
 }
 
-int main(){
+void ImprimirLista(Lista *l){	
+	No *aux = l->inicio;
 	
+	printf("Inicio\n");
+	
+	while(aux != NULL){
+		printf("%d -> ", aux->valor);
+		aux = aux->prox;
+	}
+	
+	printf("NULL");
+}
+
+
+int main(){
+	Lista lista;
+	
+	init(&lista);
+	
+	InsertInicio(&lista, 10);
+	InsertFim(&lista, 20);
+	InsertFim(&lista, 30);
+	InsertMeio(&lista, 15, 10);
+	InsertMeio(&lista, 25, 20);
+	ImprimirLista(&lista);
 	
 	return 0;
 }
