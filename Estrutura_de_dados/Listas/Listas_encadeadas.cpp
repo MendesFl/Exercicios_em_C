@@ -93,12 +93,11 @@ void ImprimirLista(Lista *l){
 	}
 	
 	printf("NULL \t | Tamanho -> %d", l->tam);
-	free(aux);
 }
 
 No* Remover(Lista *l, int valor){
 	
-	No *remover;
+	No *remover = NULL;
 	
 	if(l->inicio != NULL){
 		if(l->inicio->valor == valor){		
@@ -126,10 +125,10 @@ No* Remover(Lista *l, int valor){
 void Busca(Lista *l, int valor){
 	if(l->inicio != NULL){
 		No *aux = l->inicio;
-		while(aux->prox != NULL && aux->valor != valor){
+		while(aux != NULL && aux->valor != valor){
 			aux = aux->prox;
 		}
-		if(aux->prox == NULL && aux->valor != valor){
+		if(aux == NULL){
 			printf("Valor nao encontrado");
 		}
 		else{
@@ -137,7 +136,7 @@ void Busca(Lista *l, int valor){
 		}
 	}
 	else{
-		printf("Atenção a pilha esta vazia");
+		printf("Atenção a lista esta vazia");
 	}
 }
 
